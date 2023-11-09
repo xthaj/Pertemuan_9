@@ -35,18 +35,18 @@ fun WelcomeScreen(){
             )
         }
         Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier
-                        .padding(16.dp)
-                        .fillMaxSize()
-                ) {
-                    Text(text = "Selamat Datang di Digilib Polstat-STIS",
-                        color = MaterialTheme.colorScheme.primary,
-                        style = MaterialTheme.typography.titleMedium
-                    )
-                    Text(text = "Pusat koleksi buku statistik di sini",
-                        style = MaterialTheme.typography.bodyMedium
-                    )
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxSize()
+        ) {
+            Text(text = "Selamat Datang di Digilib Polstat-STIS",
+                color = MaterialTheme.colorScheme.primary,
+                style = MaterialTheme.typography.titleMedium
+            )
+            Text(text = "Pusat koleksi buku statistik di sini",
+                style = MaterialTheme.typography.bodyMedium
+            )
             Button(onClick = { /*TODO*/ },modifier =
                             Modifier.fillMaxWidth()) {
                                 Text(text = "Login")
