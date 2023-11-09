@@ -61,10 +61,11 @@ fun BookItem(book: Book){
                 }
     }
 }
-data class Book(val image: String, val title: String, val description: String)
+data class Book(val imageResId: Int, val title: String, val description: String)
 fun dummyData():List<Book>{
     val dummy = Book(
-        image= "https://m.mediaamazon.com/images/I/61ZPNhC2hSL._SY522_.jpg",
+//        image= "https://m.mediaamazon.com/images/I/61ZPNhC2hSL._SY522_.jpg",
+        imageResId = 0,
         title = "Android Programming with Kotlin for Beginners",
         description = "Android is the most popular mobile operating system in the world and Kotlin has been declared by Google as a first-class programming language to build Android apps. With the imminent arrival of the most anticipated Android update, Android 10 (Q), this book gets you started building apps compatible with the latest version of Android.")
         val bookDummies = mutableListOf<Book>()

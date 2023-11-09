@@ -31,68 +31,57 @@ fun RegisterScreen() {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // 1. Default Icon
-        Icon(
-            imageVector = Icons.Default.AccountCircle,
-            contentDescription = null,
-            modifier = Modifier.size(96.dp)
-        )
-
         Text(
-            text = "Register Screen",
+            text = "Register",
             style = MaterialTheme.typography.displayMedium,
             modifier = Modifier.padding(16.dp)
         )
 
-        Column {
-            // 2. Name Field
+        Column(modifier = Modifier.padding(24.dp)) {
+            // name
             TextField(
                 value = "",
-                onValueChange = { /* Handle name input */ },
+                onValueChange = { /* TODO */ },
                 label = { Text(text = "Name") },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp)
+                    .padding(8.dp)
             )
 
-            // 3. Username Field
             TextField(
                 value = "",
-                onValueChange = { /* Handle username input */ },
+                onValueChange = { /* TODO */ },
                 label = { Text(text = "Username") },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp)
+                    .padding(8.dp)
             )
 
-            // 4. Password Field
             TextField(
                 value = "",
-                onValueChange = { /* Handle password input */ },
+                onValueChange = { /* TODO */ },
                 label = { Text(text = "Password") },
                 visualTransformation = PasswordVisualTransformation(),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp)
+                    .padding(8.dp)
             )
 
-            // 5. Confirm Password Field
             TextField(
                 value = "",
-                onValueChange = { /* Handle confirm password input */ },
+                onValueChange = { /* TODO */ },
                 label = { Text(text = "Confirm Password") },
                 visualTransformation = PasswordVisualTransformation(),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp)
+                    .padding(8.dp)
             )
         }
 
-        // 6. Submit Button
+        // submit
         Button(
             onClick = {
-                // Perform the registration action here, and navigate if needed
-                // For example, you can call a registration function and navigate on success
+                // TODO
             },
             modifier = Modifier.padding(16.dp)
         ) {
@@ -100,9 +89,9 @@ fun RegisterScreen() {
         }
 
         Text(
-            text = "Already have an account? Login here",
+            text = "Already have an account? Login",
             color = Color.Gray,
-            modifier = Modifier.padding(16.dp)
+//            modifier = Modifier.padding(16.dp)
         )
     }
 }

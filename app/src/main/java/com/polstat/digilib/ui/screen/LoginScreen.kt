@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -26,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
+//opt-in for text field
 @Composable
 fun LoginScreen() {
     Column(
@@ -33,71 +35,86 @@ fun LoginScreen() {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // 1. Default Icon
-        Icon(
-            imageVector = Icons.Default.AccountCircle, // You can replace this with your desired icon
-            contentDescription = null, // Provide a meaningful description
-            modifier = Modifier.size(96.dp) // Adjust the size as needed
-        )
-
+        //title: Login
         Text(
-            text = "Login Screen",
+            text = "Login",
             style = MaterialTheme.typography.displayMedium,
             modifier = Modifier.padding(16.dp)
         )
 
-        Column {
-            // 2. Username Field
-            TextField(
-                value = "",
-                onValueChange = { /* Handle username input */ },
-                label = { Text(text = "Username") },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
-            )
-
-            // 3. Password Field
-            TextField(
-                value = "",
-                onValueChange = { /* Handle password input */ },
-                label = { Text(text = "Password") },
-                visualTransformation = PasswordVisualTransformation(), // Mask password input
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
-            )
-
-            // 4. Remember Me Checkbox
+        Column(modifier = Modifier.padding(24.dp)) {
+            // field username
             Row(
-                modifier = Modifier.padding(16.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.AccountCircle,
+                    contentDescription = null,
+                    modifier = Modifier.size(24.dp)
+                )
+                TextField(
+                    value = "",
+                    onValueChange = { /* TODO */ },
+                    label = { Text(text = "Username") },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 8.dp)
+                )
+            }
+
+            // field password
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Lock,
+                    contentDescription = null,
+                    modifier = Modifier.size(24.dp)
+                )
+                TextField(
+                    value = "",
+                    onValueChange = { /* Handle password input */ },
+                    label = { Text(text = "Password") },
+                    visualTransformation = PasswordVisualTransformation(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 8.dp)
+                )
+            }
+
+            // remember me
+            Row(
+//                modifier = Modifier.padding(16.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Checkbox(
-                    checked = false, // Initialize with the desired value
-                    onCheckedChange = { /* Handle checkbox state change */ }
+                    checked = false,
+                    onCheckedChange = { /* TODO */ }
                 )
-                Text(text = "Remember Me", modifier = Modifier.padding(start = 8.dp)
-                )
+                Text(text = "Remember Me")
             }
 
         }
 
-        // 5. Submit Button
+        //submit button
         Button(
             onClick = {
-                // Perform the login action here, and navigate if needed
-                // For example, you can call a login function and navigate on success
-            },
-            modifier = Modifier.padding(16.dp)
+                // TODO
+            }
         ) {
             Text(text = "Login")
         }
 
         Text(
-            text = "Don't have an account? Sign up here",
-            color = Color.Gray, // You can adjust the color as needed
-            modifier = Modifier.padding(16.dp)
+            text = "Don't have an account? Sign up",
+            color = Color.Gray,
+            modifier = Modifier.padding(8.dp)
         )
     }
 }
