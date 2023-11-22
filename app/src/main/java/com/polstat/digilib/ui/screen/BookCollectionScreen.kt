@@ -31,6 +31,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.google.android.material.search.SearchBar
 import com.polstat.digilib.R
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -44,33 +45,33 @@ fun SearchBar(onSearch: (String) -> Unit) {
         showClearIcon = true
     }
     TextField(
-        value = query,
-        onValueChange = { newQuery ->
-            query = newQuery
-            if (query.text.isNotEmpty()) {
-                onSearch(query.text)
-            }
-        },
-        leadingIcon = {
-            Icon(imageVector = Icons.Default.Search,
-            contentDescription = "") },
-        placeholder = { Text("Enter keyword here...") },
-        singleLine = true,
-        maxLines = 1,
-        modifier = Modifier.fillMaxWidth(),
-        trailingIcon = {
-            if (showClearIcon) {
-                IconButton(onClick = { query =
-                    TextFieldValue("") }) {
-                    Icon(
-                        imageVector = Icons.Rounded.Clear,
-                        contentDescription = "Clear Icon"
-                    )
+                value = query,
+                onValueChange = { newQuery ->
+                    query = newQuery
+                    if (query.text.isNotEmpty()) {
+                        onSearch(query.text)
+                    }
+                },
+                leadingIcon = { Icon(imageVector = Icons.Default.Search,
+                    contentDescription = "") },
+                placeholder = { Text("Enter keyword here...") },
+                singleLine = true,
+                maxLines = 1,
+                modifier = Modifier.fillMaxWidth(),
+                trailingIcon = {
+                    if (showClearIcon) {
+                        IconButton(onClick = { query =
+                            TextFieldValue("") }) {
+                            Icon(
+                                imageVector = Icons.Rounded.Clear,
+                                contentDescription = "Clear Icon"
+                            )
+                        }
+                    }
                 }
-            }
-        }
-    )
+            )
 }
+
 @Composable
 fun BookList(books: List<Book>) {
     LazyColumn {
@@ -132,9 +133,9 @@ fun dummyData():List<Book>{
     val bookDummies = mutableListOf<Book>()
     for (i in 1..30){
         val dummy = Book(
-            image= "https://m.mediaamazon.com/images/I/61ZPNhC2hSL._SY522_.jpg",
-            title = "Android Programming with Kotlin for Beginners",
-            description = "Android is the most popular mobile operating system in the world and Kotlin has been declared by Google as a first-class programming language to build Android apps. With the imminent arrival of the most anticipated Android update, Android 10 (Q), this book gets you started building apps compatible with the latest version of Android."
+            image = "https://m.mediaamazon.com/images/I/61ZPNhC2hSL._SY522_.jpg",
+            title = "Android Programming with Kotlin for Beginners Edition $i",
+            description = "Description number" + i,
         )
         bookDummies.add(dummy)
     }

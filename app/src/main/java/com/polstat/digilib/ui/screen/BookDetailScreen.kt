@@ -24,13 +24,13 @@ fun BookDetailScreen(book: Book) {
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        Image(
-            painter = painterResource(id = book.imageResId),
-            contentDescription = null,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(400.dp)
-        )
+//        Image(
+//            painter = painterResource(id = book.1),
+//            contentDescription = null,
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .height(400.dp)
+//        )
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -53,7 +53,7 @@ fun BookDetailScreen(book: Book) {
 @Composable
 fun BookDetailScreenPreview() {
     val sampleBook = Book(
-        imageResId= R.drawable.book1,
+        image= "https://m.mediaamazon.com/images/I/61ZPNhC2hSL._SY522_.jpg",
         title = "Android Programming with Kotlin for Beginners",
         description = "Android is the most popular mobile operating system in the world and Kotlin has been declared by Google as a first-class programming language to build Android apps. With the imminent arrival of the most anticipated Android update, Android 10 (Q), this book gets you started building apps compatible with the latest version of Android."
     )
