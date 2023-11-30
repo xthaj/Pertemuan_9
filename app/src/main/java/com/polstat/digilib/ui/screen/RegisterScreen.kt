@@ -1,5 +1,6 @@
 package com.polstat.digilib.ui.screen
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,6 +16,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -25,7 +30,13 @@ import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RegisterScreen() {
+fun RegisterScreen(navController: NavController) {
+
+    var name by remember { mutableStateOf("") }
+    var username by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var confirmPassword by remember { mutableStateOf("") }
+
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -38,10 +49,9 @@ fun RegisterScreen() {
         )
 
         Column(modifier = Modifier.padding(24.dp)) {
-            // name
             TextField(
-                value = "",
-                onValueChange = { /* TODO */ },
+                value = name,
+                onValueChange = { name = it },
                 label = { Text(text = "Name") },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -49,8 +59,8 @@ fun RegisterScreen() {
             )
 
             TextField(
-                value = "",
-                onValueChange = { /* TODO */ },
+                value = username,
+                onValueChange = { username = it },
                 label = { Text(text = "Username") },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -58,8 +68,8 @@ fun RegisterScreen() {
             )
 
             TextField(
-                value = "",
-                onValueChange = { /* TODO */ },
+                value = password,
+                onValueChange = { password = it },
                 label = { Text(text = "Password") },
                 visualTransformation = PasswordVisualTransformation(),
                 modifier = Modifier
@@ -68,8 +78,8 @@ fun RegisterScreen() {
             )
 
             TextField(
-                value = "",
-                onValueChange = { /* TODO */ },
+                value = confirmPassword,
+                onValueChange = { confirmPassword = it },
                 label = { Text(text = "Confirm Password") },
                 visualTransformation = PasswordVisualTransformation(),
                 modifier = Modifier
@@ -82,6 +92,7 @@ fun RegisterScreen() {
         Button(
             onClick = {
                 // TODO
+                navController.navigate("home")
             },
             modifier = Modifier.padding(16.dp)
         ) {
@@ -91,7 +102,12 @@ fun RegisterScreen() {
         Text(
             text = "Already have an account? Login",
             color = Color.Gray,
-//            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(16.dp)
+                .clickable {
+                    // Navigate to the login screen
+                    navController.navigate("login")
+                }
+
         )
     }
 }
@@ -99,5 +115,5 @@ fun RegisterScreen() {
 @Preview
 @Composable
 fun PreviewRegisterScreen(){
-    RegisterScreen()
+//    RegisterScreen()
 }

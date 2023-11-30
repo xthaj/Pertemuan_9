@@ -12,6 +12,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.rounded.Clear
+import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -73,66 +74,72 @@ fun SearchBar(onSearch: (String) -> Unit) {
 }
 
 @Composable
-fun BookList(books: List<Book>) {
+fun BookList(books: List<Book>, onBookClick: (Book) -> Unit) {
     LazyColumn {
         items(books) { book ->
-            BookItem(book)
+            BookItem(book = book, onBookClick = onBookClick)
         }
     }
 }
+
+
 @Composable
-fun BookCollectionScreen() {
-    val books = dummyData()
+fun BookCollectionScreen(books: List<Book>, onBookClick: (Book)->Unit) {
     var filteredBooks = books
     var keyword by remember { mutableStateOf("") }
-    if (keyword != "") {
-        filteredBooks = books.filter { it.title.lowercase().contains(keyword.lowercase()) }
+    if (keyword.isNotEmpty()) {
+        filteredBooks = books.filter{ it.title.lowercase().contains(keyword.lowercase()) }
     }
     Column {
         SearchBar(onSearch = {
             keyword = it
         })
-        BookList(books = filteredBooks)
+        BookList(books = filteredBooks, onBookClick=onBookClick)
     }
 }
-
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BookItem(book: Book){
-    Row(
-        modifier= Modifier.padding(8.dp)
-    ) {
-        Box{
-            Image(
-                painter = painterResource(id = R.drawable.book1),
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier.size(128.dp)
-            )
+fun BookItem(book: Book, onBookClick: (Book) -> Unit) {
+    Card(onClick = { onBookClick(book) }) {
+        Row(
+            modifier = Modifier.padding(8.dp)
+        ) {
+            Box {
+                Image(
+                    painter = painterResource(id = R.drawable.book1),
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.size(128.dp)
+                )
+            }
+            Column(
+                modifier = Modifier
+                    .padding(start = 16.dp)
+            ) {
+                Text(text = book.title,
+                    color = MaterialTheme.colorScheme.primary,
+                    style = MaterialTheme.typography.titleMedium,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis
+                )
+                Text(
+                    text = book.description,
+                    color = MaterialTheme.colorScheme.secondary,
+                    style = MaterialTheme.typography.bodySmall,
+                    maxLines = 4,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
         }
-        Column (
-                    modifier = Modifier
-                        .padding(start = 16.dp)
-                ) {
-                    Text(text = book.title,
-                        color = MaterialTheme.colorScheme.primary,
-                        style = MaterialTheme.typography.titleMedium,
-                        maxLines = 2,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                    Text(text = book.description,
-                        color = MaterialTheme.colorScheme.secondary,
-                        style = MaterialTheme.typography.bodySmall,
-                        maxLines = 4,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                }
     }
 }
-data class Book(val image: String, val title: String, val description: String)
+data class Book(val id:Int, val image: String, val title: String, val description: String)
+
 fun dummyData():List<Book>{
     val bookDummies = mutableListOf<Book>()
     for (i in 1..30){
         val dummy = Book(
+            id = i-1,
             image = "https://m.mediaamazon.com/images/I/61ZPNhC2hSL._SY522_.jpg",
             title = "Android Programming with Kotlin for Beginners Edition $i",
             description = "Description number" + i,
@@ -145,5 +152,6 @@ fun dummyData():List<Book>{
 @Preview
 @Composable
 fun PreviewBookCollectionScreen(){
-    BookCollectionScreen()
+    val books = dummyData()
+    BookCollectionScreen(books = books, onBookClick = {})
 }

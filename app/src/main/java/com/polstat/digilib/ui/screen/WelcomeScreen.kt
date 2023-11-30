@@ -17,13 +17,13 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.polstat.digilib.R
-
+import androidx.navigation.compose.rememberNavController
 
 
 @Composable
-fun WelcomeScreen(){
+fun WelcomeScreen( navController: NavHostController){
     val image = painterResource(R.drawable.library)
     Column {
         Box{
@@ -40,27 +40,37 @@ fun WelcomeScreen(){
                 .padding(16.dp)
                 .fillMaxSize()
         ) {
-            Text(text = "Selamat Datang di Digilib Polstat-STIS",
+            Text(
+                text = "Selamat Datang di Digilib Polstat-STIS",
                 color = MaterialTheme.colorScheme.primary,
                 style = MaterialTheme.typography.titleMedium
             )
-            Text(text = "Pusat koleksi buku statistik di sini",
-                style = MaterialTheme.typography.bodyMedium
+            Text(
+                text = "Pusat koleksi buku statistik di sini",
+                style = MaterialTheme.typography.bodyMedium,
             )
-            Button(onClick = { /*TODO*/ },modifier =
-                            Modifier.fillMaxWidth()) {
-                                Text(text = "Login")
-                            }
-            OutlinedButton(onClick = { /*TODO*/ },modifier =
-                            Modifier.fillMaxWidth()) {
-                                Text(text = "Register")
-                            }
+            Button(
+                onClick = {navController.navigate("login") },
+                modifier =
+                Modifier.fillMaxWidth()) {
+                Text(text = "Login")
+            }
+            OutlinedButton(
+                onClick = {
+                    navController.navigate("register")
+                },
+                modifier =
+                Modifier.fillMaxWidth()) {
+                Text(text = "Register")
+            }
         }
     }
 }
 
+
 @Preview
 @Composable
 fun PreviewWelcomeScreen(){
-    WelcomeScreen()
+    val navController = rememberNavController() // Create a NavController for preview
+    WelcomeScreen(navController = navController)
 }

@@ -3,6 +3,12 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 
+buildscript {
+    extra.apply {
+        set("room_version", "2.5.2")
+    }
+}
+
 android {
     namespace = "com.polstat.digilib"
     compileSdk = 34
@@ -50,8 +56,11 @@ android {
 }
 
 dependencies {
+
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.8.0")
+    implementation("androidx.room:room-common:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
     val nav_version = "2.7.5"
     implementation("androidx.navigation:navigation-compose:$nav_version")
     implementation("androidx.core:core-ktx:1.9.0")

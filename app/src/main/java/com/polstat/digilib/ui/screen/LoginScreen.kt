@@ -1,5 +1,6 @@
 package com.polstat.digilib.ui.screen
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -18,6 +19,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -25,11 +30,12 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-
 @OptIn(ExperimentalMaterial3Api::class)
-//opt-in for text field
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navController: NavController) {
+    var username by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -106,6 +112,8 @@ fun LoginScreen() {
         Button(
             onClick = {
                 // TODO
+                //nav
+                navController.navigate("home")
             }
         ) {
             Text(text = "Login")
@@ -115,12 +123,18 @@ fun LoginScreen() {
             text = "Don't have an account? Sign up",
             color = Color.Gray,
             modifier = Modifier.padding(8.dp)
+                .padding(8.dp)
+                .clickable {
+                    // Navigate to the registration screen
+                    navController.navigate("register")
+                }
         )
     }
 }
 
+
 @Preview
 @Composable
 fun PreviewLoginScreen(){
-    LoginScreen()
+//    LoginScreen()
 }
